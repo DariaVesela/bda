@@ -17,19 +17,26 @@
 # 1233242432
 # mary
 
-#def searchPassword(file, password):
+def searchPassword(file_name):
     # search for a particular password in the file -> return line number?
-try:
-        with open("rockyou.txt", "r", encoding='ISO-8859-1') as file:
+    # pass filenames as params
+    # use the guard
+    # use the functions
+
+    try:
+        with open(file_name, "r", encoding='ISO-8859-1') as file:
             password = input("Enter the password you're looking for: ")
 
             for line_num, line in enumerate(file, start=1): 
                 if password in line.strip():
-
                     print(f"{password} is on line {line_num}.")
-                print(f"{password} was not found.")
+                    return
+                 # once found, exit function
+                else:
+                    print(f"{password} was not found.") # put this outside the loop - only should execute after you've gone through the entire file
 
-except FileNotFoundError:
+    except FileNotFoundError:
         print("File not found")
 
-
+if __name__ == "__main__":
+    searchPassword("rockyou.txt")
